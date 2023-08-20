@@ -2,6 +2,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'geolocate.dart'; // Import the file
 
 void main() {
   runApp(MyApp());
@@ -66,7 +67,7 @@ class MyHomePage extends StatelessWidget {
             ListTile(
               title: Text('Menu Item 1'),
               onTap: () {
-                // Add functionality for drawer menu items
+                showCurrentLocation(context); // show current location
               },
             ),
             ListTile(
