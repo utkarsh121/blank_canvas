@@ -8,7 +8,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +36,48 @@ class MyAppState extends ChangeNotifier {
 }
 
 class MyHomePage extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 
     return Scaffold(
+      key: _scaffoldKey, // Add GlobalKey here
+      appBar: AppBar(
+        title: Text('My Test App'),
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          onPressed: () {
+            _scaffoldKey.currentState!.openDrawer();
+          },
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+              ),
+              child: Text('Menu'),
+            ),
+            ListTile(
+              title: Text('Menu Item 1'),
+              onTap: () {
+                // Add functionality for drawer menu items
+              },
+            ),
+            ListTile(
+              title: Text('Menu Item 2'),
+              onTap: () {
+                // Add functionality for drawer menu items
+              },
+            ),
+          ],
+        ),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -62,6 +99,7 @@ class MyHomePage extends StatelessWidget {
                 final googleUri =
                     Uri.parse('https://www.google.com/search?q=$generatedWord');
                 if (await canLaunchUrl(googleUri)) {
+                  // Use canLaunchUrl
                   await launchUrl(googleUri);
                 } else {
                   print('Could not launch $googleUri');
