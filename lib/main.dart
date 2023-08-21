@@ -4,6 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'geolocate.dart'; // Import the file
 
+// Import the qpdf.dart file you'll create later
+import 'qpdf.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -16,7 +19,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'Namer App',
+        title: 'My Test App',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
@@ -65,15 +68,18 @@ class MyHomePage extends StatelessWidget {
               child: Text('Menu'),
             ),
             ListTile(
-              title: Text('Menu Item 1'),
+              title: Text('Fetch Lat Long'),
               onTap: () {
                 showCurrentLocation(context); // show current location
               },
             ),
             ListTile(
-              title: Text('Menu Item 2'),
+              title: Text('PDF convert'), // code to convert pdf
               onTap: () {
-                // Add functionality for drawer menu items
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => QPDFScreen()),
+                );
               },
             ),
           ],
