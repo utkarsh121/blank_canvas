@@ -2,9 +2,8 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'geolocate.dart'; // Import the file
-
-// Import the qpdf.dart file you'll create later
+import 'geolocate.dart';
+import 'pic_scraper_screen.dart';
 import 'qpdf.dart';
 
 void main() {
@@ -79,6 +78,15 @@ class MyHomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => QPDFScreen()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Pic Scraper'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PicScraperScreen()),
                 );
               },
             ),
